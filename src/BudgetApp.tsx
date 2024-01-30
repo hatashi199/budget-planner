@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 
 const BudgetApp: React.FC = () => {
 	return <h1>Probando Monedero</h1>;
