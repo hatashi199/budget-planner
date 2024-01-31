@@ -2,8 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import './reset.css';
+@import './font-mulish.css';
 
-.menu-shadow {
+html,
+body {
+	font-family: 'Mulish-Regular', sans-serif;
+	font-size: 15px;
+}
+
+.box-shadow-1 {
 	box-shadow:
 		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;

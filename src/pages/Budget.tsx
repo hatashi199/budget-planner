@@ -1,5 +1,19 @@
+import { useBudgetData } from '../hooks/useBudgetData';
+
 const Budget: React.FC = () => {
-	return <h1>Budget</h1>;
+	const [storedData] = useBudgetData('budgetData');
+	return (
+		<>
+			{storedData ? (
+				<>
+					<h3>Hola soy {storedData.name}</h3>
+					<h3>Tengo {storedData.budget}</h3>
+				</>
+			) : (
+				<h3>Nada</h3>
+			)}
+		</>
+	);
 };
 
 export default Budget;
