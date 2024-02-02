@@ -13,7 +13,8 @@ export default {
 				purpleD: '#2c075e',
 				whiteD: '#ffffff',
 				purpleL_Dark: '#4e2f78',
-				purpleL_Light: '#ddd7e5'
+				purpleL_Light: '#ddd7e5',
+				error: '#B00020'
 			},
 			borderColor: {
 				purpleD: '#2c075e',
