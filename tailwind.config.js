@@ -5,20 +5,20 @@ export default {
 		extend: {
 			backgroundColor: {
 				purpleD: '#2c075e',
-				whiteD: '#ffffff',
+				whiteD: '#f5f2ff',
 				purpleL_Dark: '#4e2f78',
 				purpleL_Light: '#ddd7e5'
 			},
 			textColor: {
 				purpleD: '#2c075e',
-				whiteD: '#ffffff',
+				whiteD: '#f5f2ff',
 				purpleL_Dark: '#4e2f78',
 				purpleL_Light: '#ddd7e5',
 				error: '#B00020'
 			},
 			borderColor: {
 				purpleD: '#2c075e',
-				whiteD: '#ffffff'
+				whiteD: '#f5f2ff'
 			},
 			borderRadius: {
 				rad12: '12px'

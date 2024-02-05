@@ -40,8 +40,8 @@ const Home: React.FC = () => {
 	};
 
 	return (
-		<div className='flex justify-center items-center w-full h-[calc(100vh-80px)]'>
-			<div className='flex flex-col items-center gap-[3rem] box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
+		<div className='flex justify-center items-center bg-whiteD w-full h-[calc(100vh-80px)]'>
+			<div className='flex flex-col items-center gap-[3rem] bg-whiteD box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
 				<div className='flex justify-center items-center rounded-[50%] bg-purpleL_Light w-[96px] h-[96px]'>
 					<FaMoneyBillWave className='text-purpleD text-[36px]' />
 				</div>

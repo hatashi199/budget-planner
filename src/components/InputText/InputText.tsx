@@ -23,7 +23,7 @@ const InputText: React.FC<InputTextProps> = ({
 				placeholder={placeholder}
 				value={value}
 				onChange={changeEvent}
-				className='w-full'
+				className='w-full bg-whiteD text-purpleD'
 			/>
 			{error && (
 				<span className='absolute bottom-[-1.5rem] left-[15px] text-error text-[0.8rem]'>
