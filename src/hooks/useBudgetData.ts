@@ -1,9 +1,5 @@
 import { useState } from 'react';
-
-interface BudgetDataInterface {
-	name: string;
-	budget: string;
-}
+import { BudgetDataInterface } from '../components/interfaces/BudgetDataInterface';
 
 export const useBudgetData = (
 	key: string,

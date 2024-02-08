@@ -1,9 +1,7 @@
-import { IconType } from 'react-icons';
-
 export interface ExpensesListInterface {
-	img: IconType;
+	id: number;
 	category: string;
 	label: string;
-	date: Date;
+	date: string;
 	expense: number;
 }

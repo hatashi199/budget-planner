@@ -6,18 +6,20 @@ import InputText from '../components/InputText/InputText';
 
 const Home: React.FC = () => {
 	const [name, setName] = useState<string>('');
-	const [budget, setBudget] = useState<string>('');
+	const [budget, setBudget] = useState<number>(0);
 	const [errorName, setErrorName] = useState<string>('');
 	const [errorBudget, setErrorBudget] = useState<string>('');
 
 	const [storedData, setBudgetData] = useBudgetData('budgetData', {
 		name,
-		budget
+		initialBudget: 0,
+		budget,
+		expenses: []
 	});
 
 	const navigate = useNavigate();
 
-	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 
 		if (!name || !budget) {
@@ -30,13 +32,15 @@ const Home: React.FC = () => {
 		setErrorBudget('');
 
 		setBudgetData({
+			...storedData,
 			name,
+			initialBudget: budget,
 			budget
 		});
 
 		navigate('/budget');
 		setName('');
-		setBudget('');
+		setBudget(0);
 	};
 
 	return (
@@ -56,8 +60,8 @@ const Home: React.FC = () => {
 					<InputText
 						label='Presupuesto'
 						placeholder='Introduce tu presupuesto'
-						value={budget}
-						changeEvent={(e) => setBudget(e.target.value)}
+						value={budget === 0 ? '' : budget.toString()}
+						changeEvent={(e) => setBudget(Number(e.target.value))}
 						error={errorBudget}
 					/>
 					<button
