@@ -1,5 +1,5 @@
 export interface ExpensesListInterface {
-	id: number;
+	id: string;
 	category: string;
 	label: string;
 	date: string;

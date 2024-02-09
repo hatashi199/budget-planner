@@ -2,7 +2,7 @@ import { MdLightMode } from 'react-icons/md';
 
 const Header: React.FC = () => {
 	return (
-		<div className='flex justify-between items-center bg-whiteD box-shadow-1 h-[80px] px-pad20'>
+		<div className='flex justify-between items-center bg-whiteD box-shadow-1 w-full h-[80px] px-pad20'>
 			<div className='w-[48px] h-full'></div>
 			<h1 className='text-purpleD uppercase font-mulishEB text-[2.5rem]'>
 				Monedero
