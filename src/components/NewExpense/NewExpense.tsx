@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import InputText from '../InputText/InputText';
 import { BudgetDataInterface } from '../interfaces/BudgetDataInterface';
 import { v4 as uuidv4 } from 'uuid';
 import { ExpensesListInterface } from '../interfaces/ExpensesListInterface';
+import { ErrorAddExpense } from '../interfaces/ErrorAddExpense';
 
 interface NewExpenseProps {
 	data: BudgetDataInterface;
@@ -18,10 +19,32 @@ const NewExpense: React.FC<NewExpenseProps> = ({
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [name, setName] = useState<string>('');
 	const [category, setCategory] = useState<string>('');
-	const [expense, setExpense] = useState<number>(0);
+	const [expense, setExpense] = useState<number | ''>('');
+	const [errorAddExpense, setErrorAddExpense] = useState<ErrorAddExpense>({
+		errorName: '',
+		errorCategory: '',
+		errorExpense: ''
+	});
+
+	const handleExpenseValidation = (
+		e: React.ChangeEvent<HTMLInputElement>
+	) => {
+		if (!isNaN(Number(e.target.value))) {
+			setExpense(Number(e.target.value));
+		}
+	};
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
+
+		if (!name || !category || !expense) {
+			setErrorAddExpense({
+				errorName: !name ? 'Nombre obligatorio' : '',
+				errorCategory: !category ? 'Categoría obligatoria' : '',
+				errorExpense: !expense ? 'Gasto obligatorio' : ''
+			});
+			return;
+		}
 
 		const nowDate: Date = new Date();
 
@@ -49,7 +72,8 @@ const NewExpense: React.FC<NewExpenseProps> = ({
 
 		setName('');
 		setCategory('');
-		setExpense(0);
+		setExpense('');
+		setOpenModal(false);
 	};
 	return (
 		<>
@@ -80,20 +104,21 @@ const NewExpense: React.FC<NewExpenseProps> = ({
 								changeEvent={(e) => setName(e.target.value)}
 								label='Nombre'
 								placeholder='Introduce el nombre del gasto'
+								error={errorAddExpense.errorName}
 							/>
 							<InputText
 								value={category}
 								changeEvent={(e) => setCategory(e.target.value)}
 								label='Categoría'
 								placeholder='Introduce una categoría'
+								error={errorAddExpense.errorCategory}
 							/>
 							<InputText
-								value={expense === 0 ? '' : expense.toString()}
-								changeEvent={(e) =>
-									setExpense(Number(e.target.value))
-								}
+								value={expense.toString()}
+								changeEvent={handleExpenseValidation}
 								label='Gasto'
 								placeholder='Introduce el  total del gasto'
+								error={errorAddExpense.errorExpense}
 							/>
 							<button
 								className='bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'

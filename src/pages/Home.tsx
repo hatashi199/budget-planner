@@ -3,6 +3,7 @@ import { FaMoneyBillWave } from 'react-icons/fa';
 import { useBudgetData } from '../hooks/useBudgetData';
 import { useNavigate } from 'react-router-dom';
 import InputText from '../components/InputText/InputText';
+import { BudgetDataInterface } from '../components/interfaces/BudgetDataInterface';
 
 const Home: React.FC = () => {
 	const [name, setName] = useState<string>('');
@@ -10,7 +11,7 @@ const Home: React.FC = () => {
 	const [errorName, setErrorName] = useState<string>('');
 	const [errorBudget, setErrorBudget] = useState<string>('');
 
-	const [storedData, setBudgetData] = useBudgetData('budgetData', {
+	const { storedData, setBudgetData } = useBudgetData('budgetData', {
 		name,
 		initialBudget: 0,
 		budget,
@@ -18,6 +19,12 @@ const Home: React.FC = () => {
 	});
 
 	const navigate = useNavigate();
+
+	const handleBudgetValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (!isNaN(Number(e.target.value))) {
+			setBudget(Number(e.target.value));
+		}
+	};
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -31,12 +38,17 @@ const Home: React.FC = () => {
 		setErrorName('');
 		setErrorBudget('');
 
-		setBudgetData({
-			...storedData,
-			name,
-			initialBudget: budget,
-			budget
-		});
+		const updateBudgetData: BudgetDataInterface | null =
+			storedData != null
+				? {
+						...storedData,
+						name,
+						initialBudget: budget,
+						budget
+					}
+				: null;
+
+		setBudgetData(updateBudgetData);
 
 		navigate('/budget');
 		setName('');
@@ -61,7 +73,7 @@ const Home: React.FC = () => {
 						label='Presupuesto'
 						placeholder='Introduce tu presupuesto'
 						value={budget === 0 ? '' : budget.toString()}
-						changeEvent={(e) => setBudget(Number(e.target.value))}
+						changeEvent={handleBudgetValidation}
 						error={errorBudget}
 					/>
 					<button

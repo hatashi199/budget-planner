@@ -1,13 +1,22 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { BudgetDataInterface } from '../interfaces/BudgetDataInterface';
+import React from 'react';
 
 interface BudgetInfoProps {
 	data: BudgetDataInterface;
+	deleteData: (key: string) => void;
 }
 
-const BudgetInfo: React.FC<BudgetInfoProps> = ({ data }: BudgetInfoProps) => {
+const BudgetInfo: React.FC<BudgetInfoProps> = ({
+	data,
+	deleteData
+}: BudgetInfoProps) => {
 	const remainingBudget: number =
 		100 - (data.budget * 100) / data.initialBudget;
+
+	const handleClick = () => {
+		deleteData('budgetData');
+	};
 
 	return (
 		<div className='flex justify-center w-full py-pad68'>
@@ -49,7 +58,10 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({ data }: BudgetInfoProps) => {
 						</div>
 					</div>
 				</div>
-				<button className='bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'>
+				<button
+					className='bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'
+					onClick={handleClick}
+				>
 					Reiniciar
 				</button>
 			</div>

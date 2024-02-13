@@ -4,6 +4,7 @@ interface InputTextProps {
 	value: string;
 	changeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	error?: string;
+	pattern?: string;
 }
 
 const InputText: React.FC<InputTextProps> = ({
@@ -11,7 +12,8 @@ const InputText: React.FC<InputTextProps> = ({
 	placeholder,
 	value,
 	changeEvent,
-	error
+	error,
+	pattern
 }: InputTextProps) => {
 	return (
 		<label className='border-solid border-[1px] border-purpleD rounded-rad12 relative py-pad15 pl-pad15'>
@@ -20,6 +22,7 @@ const InputText: React.FC<InputTextProps> = ({
 			</span>
 			<input
 				type='text'
+				pattern={pattern}
 				placeholder={placeholder}
 				value={value}
 				onChange={changeEvent}
