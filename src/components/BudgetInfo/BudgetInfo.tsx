@@ -37,7 +37,7 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({
 					</div>
 					<div className='flex flex-col gap-[2.5rem] items-center'>
 						<span className='text-purpleD text-[4rem]'>
-							{data.budget}€
+							{data.initialBudget}€
 						</span>
 						<div className='flex justify-between gap-[1.5rem] w-full'>
 							<div className='flex flex-col items-center gap-[0.3rem]'>

@@ -1,23 +1,18 @@
-import { useBudgetData } from '../hooks/useBudgetData';
+import { useLocalStorageItems } from '../hooks/useBudgetData';
 import 'react-circular-progressbar/dist/styles.css';
 import ExpensesList from '../components/ExpensesList/ExpensesList';
 import BudgetInfo from '../components/BudgetInfo/BudgetInfo';
 import NewExpense from '../components/NewExpense/NewExpense';
 import { Link } from 'react-router-dom';
+import { INITIAL_LS_DATA } from '../const';
 import { BudgetDataInterface } from '../components/interfaces/BudgetDataInterface';
 
 const Budget: React.FC = () => {
-	const INIT_VALUE: BudgetDataInterface = {
-		name: '',
-		initialBudget: 0,
-		budget: 0,
-		expenses: []
-	};
-
-	const { storedData, setBudgetData, deleteBudgetData } = useBudgetData(
-		'budgetData',
-		INIT_VALUE
-	);
+	const { storedData, setLocalData, deleteLocalData } =
+		useLocalStorageItems<BudgetDataInterface>(
+			'budgetData',
+			INITIAL_LS_DATA
+		);
 
 	return (
 		<>
@@ -25,12 +20,12 @@ const Budget: React.FC = () => {
 				<div className='flex flex-col min-h-[calc(100vh-80px)]'>
 					<BudgetInfo
 						data={storedData}
-						deleteData={deleteBudgetData}
+						deleteData={deleteLocalData}
 					/>
 					<ExpensesList expensesData={storedData.expenses} />
 					<NewExpense
 						data={storedData}
-						updateData={setBudgetData}
+						updateData={setLocalData}
 					/>
 				</div>
 			) : (

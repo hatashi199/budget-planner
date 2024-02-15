@@ -1,28 +1,22 @@
 import { useState } from 'react';
-import { BudgetDataInterface } from '../components/interfaces/BudgetDataInterface';
 
-export const useBudgetData = (
-	key: string,
-	initialValue: BudgetDataInterface
-) => {
-	const getBudgetData = () => {
+export const useLocalStorageItems = <T>(key: string, initialValue: T) => {
+	const getLocalData = () => {
 		const data = localStorage.getItem(key);
 		return data !== null ? JSON.parse(data) : initialValue;
 	};
 
-	const [storedData, setStoredData] = useState<BudgetDataInterface | null>(
-		getBudgetData
-	);
+	const [storedData, setStoredData] = useState<T | null>(getLocalData);
 
-	const setBudgetData = (newValue: BudgetDataInterface | null) => {
+	const setLocalData = (newValue: T | null) => {
 		localStorage.setItem(key, JSON.stringify(newValue));
 		setStoredData(newValue);
 	};
 
-	const deleteBudgetData = (key: string) => {
+	const deleteLocalData = (key: string) => {
 		localStorage.removeItem(key);
 		setStoredData(null);
 	};
 
-	return { storedData, setBudgetData, deleteBudgetData };
+	return { storedData, setLocalData, deleteLocalData };
 };

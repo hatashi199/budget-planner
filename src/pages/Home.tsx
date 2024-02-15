@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { FaMoneyBillWave } from 'react-icons/fa';
-import { useBudgetData } from '../hooks/useBudgetData';
+import { useLocalStorageItems } from '../hooks/useBudgetData';
 import { useNavigate } from 'react-router-dom';
 import InputText from '../components/InputText/InputText';
 import { BudgetDataInterface } from '../components/interfaces/BudgetDataInterface';
+import { INITIAL_LS_DATA } from '../const';
 
 const Home: React.FC = () => {
 	const [name, setName] = useState<string>('');
@@ -11,12 +12,11 @@ const Home: React.FC = () => {
 	const [errorName, setErrorName] = useState<string>('');
 	const [errorBudget, setErrorBudget] = useState<string>('');
 
-	const { storedData, setBudgetData } = useBudgetData('budgetData', {
-		name,
-		initialBudget: 0,
-		budget,
-		expenses: []
-	});
+	const { storedData, setLocalData } =
+		useLocalStorageItems<BudgetDataInterface>(
+			'budgetData',
+			INITIAL_LS_DATA
+		);
 
 	const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 					}
 				: null;
 
-		setBudgetData(updateBudgetData);
+		setLocalData(updateBudgetData);
 
 		navigate('/budget');
 		setName('');
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
 	};
 
 	return (
-		<div className='flex justify-center items-center bg-whiteD w-full min-h-[calc(100vh-80px)]'>
+		<div className='flex justify-center items-center w-full min-h-[calc(100vh-80px)]'>
 			<div className='flex flex-col items-center gap-[3rem] bg-whiteD box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
 				<div className='flex justify-center items-center rounded-[50%] bg-purpleL_Light w-[96px] h-[96px]'>
 					<FaMoneyBillWave className='text-purpleD text-[36px]' />
