@@ -35,7 +35,9 @@ const BudgetApp: React.FC = () => {
 				{routes.map((route) => (
 					<Route
 						path={route.path}
-						element={<route.page />}
+						element={
+							<route.page themeData={themeData.storedData} />
+						}
 						key={route.label}
 					/>
 				))}

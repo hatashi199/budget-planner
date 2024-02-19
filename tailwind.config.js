@@ -7,14 +7,14 @@ export default {
 			backgroundColor: {
 				purpleD: '#2c075e',
 				whiteD: '#f5f2ff',
-				purpleL_Dark: '#4e2f78',
-				purpleL_Light: '#ddd7e5'
+				purpleL_Dark: '#4c2d78',
+				purpleL_Light: '#d5cce5'
 			},
 			textColor: {
 				purpleD: '#2c075e',
 				whiteD: '#f5f2ff',
-				purpleL_Dark: '#4e2f78',
-				purpleL_Light: '#ddd7e5',
+				purpleL_Dark: '#4c2d78',
+				purpleL_Light: '#d5cce5',
 				error: '#B00020'
 			},
 			borderColor: {

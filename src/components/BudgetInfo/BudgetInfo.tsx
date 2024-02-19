@@ -5,11 +5,13 @@ import React from 'react';
 interface BudgetInfoProps {
 	data: BudgetDataInterface;
 	deleteData: (key: string) => void;
+	themeData: string | null;
 }
 
 const BudgetInfo: React.FC<BudgetInfoProps> = ({
 	data,
-	deleteData
+	deleteData,
+	themeData
 }: BudgetInfoProps) => {
 	const remainingBudget: number =
 		100 - (data.budget * 100) / data.initialBudget;
@@ -20,7 +22,7 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({
 
 	return (
 		<div className='flex justify-center w-full py-pad68'>
-			<div className='flex flex-col gap-[2.5rem] bg-whiteD box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[650px] w-full'>
+			<div className='flex flex-col gap-[2.5rem] bg-whiteD dark:bg-purpleD box-shadow-light dark:box-shadow-dark rounded-rad12 p-pad24 mx-mar24 max-w-[650px] w-full'>
 				<div className='flex justify-between items-center gap-[3rem]'>
 					<div className='w-[250px] h-[250px]'>
 						<CircularProgressbar
@@ -28,21 +30,32 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({
 							text={`${Math.round(remainingBudget)}%`}
 							strokeWidth={6}
 							styles={buildStyles({
-								pathColor: '#2c075e',
-								trailColor: '#ddd7e5',
-								textColor: '#2c075e',
+								pathColor:
+									themeData === 'light'
+										? '#2c075e'
+										: '#f5f2ff',
+								trailColor:
+									themeData === 'light'
+										? '#d5cce5'
+										: '#4c2d78',
+								textColor:
+									themeData === 'light'
+										? '#2c075e'
+										: '#f5f2ff',
 								backgroundColor: 'transparent'
 							})}
 						/>
 					</div>
 					<div className='flex flex-col gap-[2.5rem] items-center'>
-						<span className='text-purpleD text-[4rem]'>
+						<span className='text-purpleD dark:text-whiteD text-[4rem]'>
 							{data.initialBudget}€
 						</span>
 						<div className='flex justify-between gap-[1.5rem] w-full'>
 							<div className='flex flex-col items-center gap-[0.3rem]'>
-								<span className='text-purpleD'>Gastos</span>
-								<span className='text-purpleD text-[2rem]'>
+								<span className='text-purpleD dark:text-whiteD'>
+									Gastos
+								</span>
+								<span className='text-purpleD dark:text-whiteD text-[2rem]'>
 									{data.initialBudget === data.budget
 										? '0.00'
 										: data.initialBudget - data.budget}
@@ -50,8 +63,10 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({
 								</span>
 							</div>
 							<div className='flex flex-col items-center gap-[0.3rem]'>
-								<span className='text-purpleD'>Disponible</span>
-								<span className='text-purpleD text-[2rem]'>
+								<span className='text-purpleD dark:text-whiteD'>
+									Disponible
+								</span>
+								<span className='text-purpleD dark:text-whiteD text-[2rem]'>
 									{data.budget}€
 								</span>
 							</div>
@@ -59,7 +74,7 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({
 					</div>
 				</div>
 				<button
-					className='bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'
+					className='bg-purpleD dark:bg-whiteD text-whiteD dark:text-purpleD rounded-rad12 py-pad15 text-center'
 					onClick={handleClick}
 				>
 					Reiniciar

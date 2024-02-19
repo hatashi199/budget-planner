@@ -1,3 +1,4 @@
+import { IoMdMoon } from 'react-icons/io';
 import { MdLightMode } from 'react-icons/md';
 
 interface HeaderProps {
@@ -15,17 +16,24 @@ const Header: React.FC<HeaderProps> = ({ changeTheme }: HeaderProps) => {
 			changeTheme.setLocalData('light');
 		}
 	};
+
 	return (
-		<div className='flex justify-between items-center bg-whiteD dark:bg-purpleD box-shadow-1 w-full h-[80px] px-pad20'>
+		<div
+			className={`flex justify-between items-center bg-whiteD ${changeTheme.storedData === 'light' ? `box-shadow-light` : `box-shadow-dark`} dark:bg-purpleD w-full h-[80px] px-pad20`}
+		>
 			<div className='w-[48px] h-full'></div>
 			<h1 className='text-purpleD dark:text-whiteD uppercase font-mulishEB text-[2.5rem]'>
 				Monedero
 			</h1>
 			<div
-				className='flex justify-center items-center rounded-[50%] bg-purpleL_Light dark:bg-purpleL_Dark w-[48px] h-[48px]'
+				className='flex justify-center items-center rounded-[50%] bg-purpleL_Light dark:bg-purpleL_Dark w-[48px] h-[48px] cursor-pointer'
 				onClick={handleClickTheme}
 			>
-				<MdLightMode className='text-purpleD dark:text-whiteD text-[28px]' />
+				{changeTheme.storedData === 'light' ? (
+					<IoMdMoon className='text-purpleD text-[28px]' />
+				) : (
+					<MdLightMode className='text-whiteD text-[28px]' />
+				)}
 			</div>
 		</div>
 	);

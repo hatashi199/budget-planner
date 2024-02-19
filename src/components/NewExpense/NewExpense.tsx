@@ -78,10 +78,10 @@ const NewExpense: React.FC<NewExpenseProps> = ({
 	return (
 		<>
 			<button
-				className='flex justify-center items-center fixed bottom-[5%] right-[3%] z-5 cursor-pointer bg-purpleD rounded-[50%] w-[65px] h-[65px]'
+				className='flex justify-center items-center fixed bottom-[5%] right-[3%] z-5 cursor-pointer bg-purpleD dark:bg-whiteD rounded-[50%] w-[65px] h-[65px]'
 				onClick={() => setOpenModal(true)}
 			>
-				<FaPlus className='text-whiteD text-[28px]' />
+				<FaPlus className='text-whiteD dark:text-purpleD text-[28px]' />
 			</button>
 			{openModal && (
 				<div className='flex justify-center items-center bg-purpleD bg-opacity-85 w-[100vw] h-[100vh] fixed top-0 z-10'>
@@ -91,14 +91,14 @@ const NewExpense: React.FC<NewExpenseProps> = ({
 					>
 						<RxCross2 className='text-whiteD text-[28px]' />
 					</div>
-					<div className='flex flex-col items-center gap-[3rem] bg-whiteD box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
+					<div className='flex flex-col items-center gap-[3rem] bg-whiteD dark:bg-purpleD box-shadow-light dark:box-shadow-dark box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
 						<div className='flex flex-col items-center gap-[0.5rem] w-full'>
-							<h3 className='text-purpleD text-[2.5rem] uppercase'>
+							<h3 className='text-purpleD dark:text-whiteD text-[2.5rem] uppercase'>
 								Nuevo Gasto
 							</h3>
-							<div className='bg-purpleD h-[3px] w-full'></div>
+							<div className='bg-purpleD dark:bg-whiteD h-[3px] w-full'></div>
 						</div>
-						<form className='flex flex-col gap-[2.5rem] w-full'>
+						<form className='flex flex-col gap-[2.5rem] w-full text-[1.2rem]'>
 							<InputText
 								value={name}
 								changeEvent={(e) => setName(e.target.value)}
@@ -121,7 +121,7 @@ const NewExpense: React.FC<NewExpenseProps> = ({
 								error={errorAddExpense.errorExpense}
 							/>
 							<button
-								className='bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'
+								className='bg-purpleD dark:bg-whiteD text-whiteD dark:text-purpleD rounded-rad12 py-pad15 text-center'
 								onClick={handleClick}
 							>
 								Aceptar

@@ -57,11 +57,11 @@ const Home: React.FC = () => {
 
 	return (
 		<div className='flex justify-center items-center w-full min-h-[calc(100vh-80px)]'>
-			<div className='flex flex-col items-center gap-[3rem] bg-whiteD box-shadow-1 rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
-				<div className='flex justify-center items-center rounded-[50%] bg-purpleL_Light w-[96px] h-[96px]'>
-					<FaMoneyBillWave className='text-purpleD text-[36px]' />
+			<div className='flex flex-col items-center gap-[3rem] box-shadow-light dark:box-shadow-dark dark:bg-purpleD bg-whiteD rounded-rad12 p-pad24 mx-mar24 max-w-[450px] w-full'>
+				<div className='flex justify-center items-center rounded-[50%] dark:bg-purpleL_Dark bg-purpleL_Light w-[96px] h-[96px]'>
+					<FaMoneyBillWave className='dark:text-whiteD text-purpleD text-[36px]' />
 				</div>
-				<form className='flex flex-col gap-[2.5rem] w-full'>
+				<form className='flex flex-col gap-[2.5rem] w-full text-[1.2rem]'>
 					<InputText
 						label='Nombre'
 						placeholder='Introduce tu nombre'
@@ -77,7 +77,7 @@ const Home: React.FC = () => {
 						error={errorBudget}
 					/>
 					<button
-						className='bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'
+						className='dark:bg-whiteD dark:text-purpleD bg-purpleD text-whiteD rounded-rad12 py-pad15 text-center'
 						onClick={handleClick}
 					>
 						Aceptar
