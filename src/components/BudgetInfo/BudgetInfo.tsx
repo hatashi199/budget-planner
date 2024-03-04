@@ -22,9 +22,9 @@ const BudgetInfo: React.FC<BudgetInfoProps> = ({
 
 	return (
 		<div className='flex justify-center w-full py-pad68'>
-			<div className='flex flex-col gap-[2.5rem] bg-whiteD dark:bg-purpleD box-shadow-light dark:box-shadow-dark rounded-rad12 p-pad24 mx-mar24 max-w-[650px] w-full'>
-				<div className='flex justify-between items-center gap-[3rem]'>
-					<div className='w-[250px] h-[250px]'>
+			<div className='flex flex-col gap-[2.5rem] bg-whiteD dark:bg-purpleD box-shadow-light dark:box-shadow-dark rounded-rad12 p-pad24 mx-mar24 max-w-[400px] md:max-w-[650px] w-full'>
+				<div className='flex flex-col md:flex-row justify-between items-center gap-[3rem]'>
+					<div className='w-[200px] h-[200px] md:w-[250px] md:h-[250px]'>
 						<CircularProgressbar
 							value={Math.round(remainingBudget)}
 							text={`${Math.round(remainingBudget)}%`}
